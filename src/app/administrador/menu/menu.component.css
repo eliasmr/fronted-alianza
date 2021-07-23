@@ -1,0 +1,15 @@
+*{
+    padding: 0px;
+}
+.bi-person::before {
+    color: #33BEFF !important;
+    font-size: 50px;
+    justify-content: left;
+}
+#textCliente {
+    color: #33BEFF !important;
+    font-size: 20px;
+}
+#textClientevar{
+    font-size: 20px;
+}

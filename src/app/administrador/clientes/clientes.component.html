@@ -1,0 +1,138 @@
+<div class="container-fluid">
+    <div class="input-group mb-3">
+        <div class="col-1">
+            <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">New</button>
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-primary">Export</button>
+        </div>
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="col-3">
+            <input class="form-control me-2" type="search" placeholder="Enter Chared Key" aria-label="Search">
+        </div>
+        <div class="col-1">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <button class="btn btn-primary" type="button">Advanced Search</button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="col">
+            <p id="textCliente" class="d-flex p-2 bd-highlight">Clients</p>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="col-11">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Shared Key</th>
+                    <th scope="col">Business ID</th>
+                    <th scope="col">E-Mail</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Data Added</th>
+                    <th scope="col"><i class="bi bi-pencil"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let list of listClientes">
+                    <th >{{list.sharedkey}}</th>
+                    <td>{{list.businessID}}</td>
+                    <td>{{list.email}}</td>
+                    <td>{{list.phone}}</td>
+                    <td>{{list.dataAdd}}</td>
+                    <td><i class="bi bi-pencil"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="col-8">
+          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Create new Client</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3 row">
+                    <label for="Name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="Name">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="Phone" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-8">
+                      <input type="number" class="form-control" id="Phone">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                    <div class="col-sm-8">
+                      <input type="email" class="form-control" id="email" placeholder="email@email.com">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="datepicker" class="col-sm-2 col-form-label">Start Date</label>
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-event-fill"></i></span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $('#datePicker')
+          .datepicker({
+              format: 'mm/dd/yyyy'
+          })
+          .on('changeDate', function(e) {
+              // Revalidate the date field
+              $('#eventForm').formValidation('revalidateField', 'date');
+          });
+  
+      $('#eventForm').formValidation({
+          framework: 'bootstrap',
+          icon: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The name is required'
+                      }
+                  }
+              },
+              date: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The date is required'
+                      },
+                      date: {
+                          format: 'MM/DD/YYYY',
+                          message: 'The date is not a valid'
+                      }
+                  }
+              }
+          }
+      });
+  });
+  </script>
+

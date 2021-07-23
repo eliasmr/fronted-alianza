@@ -1,0 +1,7 @@
+#textCliente {
+    color: #33BEFF !important;
+    font-size: 20px;
+}
+.bi-pencil::before {
+    color: #33BEFF !important;
+}
